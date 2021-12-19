@@ -10,12 +10,17 @@ public class ConfigReader {
 	private static ConfigReader configReader = null;
 	private Properties properties = null;
 
-	private ConfigReader() throws IOException {
+	private ConfigReader() {
 		properties = new Properties();
-		properties.load(new FileInputStream(new File("src/test/resources/config.properties")));
+		try {
+			properties.load(new FileInputStream(new File("src/test/resources/config.properties")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	public static ConfigReader getInstance() throws IOException {
+	public static ConfigReader getInstance() {
 		if (configReader == null)
 			configReader = new ConfigReader();
 		return configReader;

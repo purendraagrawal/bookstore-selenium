@@ -44,7 +44,7 @@ public class ElementUitl {
 	}
 
 	public static WebElement fluentWait(WebDriver driver, String locator, String address) {
-		return WaitUtils.fluentWait(driver, getLocator(locator, address));
+		return WaitUtils.getElementUsingFluentWait(driver, getLocator(locator, address));
 	}
 
 	public static void sendKeys(WebElement element, String value) {
