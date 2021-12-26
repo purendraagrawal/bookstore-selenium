@@ -1,18 +1,16 @@
 package stepdefinition;
 
-import pages.BasePage;
-import test.BaseTest;
+import context.TestContext;
 import utils.ConfigReader;
 
 public class BaseStepDef {
 
-	protected BasePage basePage;
 	protected final String userName;
 	protected final String password;
 	protected ConfigReader config;
+	protected TestContext testContext;
 
 	public BaseStepDef() {
-		basePage = new BasePage(BaseTest.getDriver());
 		config = ConfigReader.getInstance();
 		userName = config.getValueOfKey("username");
 		password = config.getValueOfKey("password");

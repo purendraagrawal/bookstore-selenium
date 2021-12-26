@@ -22,8 +22,7 @@ public class LoginPage extends BasePage {
 		ElementUtil.sendKeys(ElementUtil.findElementUntilClickable(driver, Constants.XPATH, passwordAddress), password);
 	}
 
-	public ProfilePage clickOnLogin() {
+	public void clickOnLogin() {
 		ElementUtil.click(driver, Constants.XPATH, loginButtonAdress);
-		return new ProfilePage(driver);
 	}
 }

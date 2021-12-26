@@ -19,7 +19,7 @@ public class APIStepDef extends BaseAPIStepDef {
 
 	@Then("Delete the Book ISBN {string} using API")
 	public void deleteABook(String isbnName) {
-		request = new RestRequestContext();
+		RestRequestContext request = new RestRequestContext();
 		request.setContentTypeJSON();
 		DeleteBookRequest deleteBookRequestBody = new DeleteBookRequest(isbnName, userId);
 		request.setBearerToken(generateToken(userName, password));
@@ -30,7 +30,7 @@ public class APIStepDef extends BaseAPIStepDef {
 
 	@When("a Book ISBN {string} is added using API")
 	public void addABook(String isbnName) {
-		request = new RestRequestContext();
+		RestRequestContext request = new RestRequestContext();
 		request.setContentTypeJSON();
 		ISBN firstBook = new ISBN(isbnName);
 		List<ISBN> collectionOfBookList = new ArrayList<>();

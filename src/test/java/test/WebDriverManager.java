@@ -5,24 +5,25 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import utils.Constants;
 
-public class BaseTest {
+public class WebDriverManager {
 
-	private static WebDriver driver;
+	WebDriver driver;
 
-	public static void setup() {
+	private WebDriver createDriver() {
 		System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get(Constants.URL);
-	}
-
-	public static void tearDown() {
-		if (driver != null)
-			driver.quit();
-	}
-
-	public static WebDriver getDriver() {
 		return driver;
+	}
+
+	public void tearDown() {
+		driver.close();
+		driver.quit();
+	}
+
+	public WebDriver getDriver() {
+		return driver == null ? driver = createDriver() : driver;
 	}
 
 }

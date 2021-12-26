@@ -21,19 +21,16 @@ public class BasePage {
 		return ElementUtil.getElementUsingfluentWait(driver, Constants.XPATH, welcomeUserNameAddress).getText();
 	}
 
-	public BookStorePage clickOnBookStoreLink() {
+	public void clickOnBookStoreLink() {
 		ElementUtil.click(driver, Constants.XPATH, bookStoreLink);
-		return new BookStorePage(driver);
 	}
 
-	public LoginPage clickOnLogOutLink() {
+	public void clickOnLogOutLink() {
 		ElementUtil.click(driver, Constants.XPATH, logOutLink);
-		return new LoginPage(driver);
 	}
 
-	public ProfilePage clickOnProfileLink() {
+	public void clickOnProfileLink() {
 		ElementUtil.click(driver, Constants.XPATH, profileLink);
-		return new ProfilePage(driver);
 	}
 
 	public String getTextOfAlert() {

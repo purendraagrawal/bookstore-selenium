@@ -9,14 +9,13 @@ import pojo.LoginViewRequest;
 public class BaseAPIStepDef extends BaseStepDef {
 
 	protected final String userId;
-	protected RestRequestContext request;
 
 	public BaseAPIStepDef() {
 		userId = config.getValueOfKey("userId");
 	}
 
 	protected String generateToken(String username, String password) {
-		request = new RestRequestContext();
+		RestRequestContext request = new RestRequestContext();
 		request.setContentTypeJSON();
 		LoginViewRequest loginRequest = new LoginViewRequest(username, password);
 		request.setRequestBody(loginRequest);
