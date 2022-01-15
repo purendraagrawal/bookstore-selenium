@@ -1,5 +1,6 @@
 package stepdefinition;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import io.restassured.response.Response;
 import pojo.AddListOfBooksRequest;
 import pojo.DeleteBookRequest;
 import pojo.ISBN;
+import utils.JSONSchemaUtility;
 
 public class APIStepDef extends BaseAPIStepDef {
 
@@ -38,8 +40,10 @@ public class APIStepDef extends BaseAPIStepDef {
 		AddListOfBooksRequest addListOfBookRequestBody = new AddListOfBooksRequest(userId, collectionOfBookList);
 		request.setBearerToken(generateToken(userName, password));
 		request.setRequestBody(addListOfBookRequestBody);
-		IRestResponseContext<ISBN> addBookResponse = new RestResponseContext<>(ISBN.class,
-				request.getResponse("POST", "/BookStore/v1/Books"));
+		Response response = request.getResponse("POST", "/BookStore/v1/Books");
+		IRestResponseContext<ISBN> addBookResponse = new RestResponseContext<>(ISBN.class, response);
+		Assert.assertTrue(JSONSchemaUtility.compareJSONSchema(new File("src/test/resources/schema/addListOfBooks.json"),
+				response.getBody().asString()));
 		Assert.assertEquals(201, addBookResponse.getStatusCode());
 		// Assert.assertEquals(isbnName, addBookResponse.getBody().getIsbn());
 	}

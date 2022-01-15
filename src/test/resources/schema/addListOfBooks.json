@@ -1,0 +1,71 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "books": [
+                {
+                    "isbn": "9781449325862"
+                }
+            ]
+        }
+    ],
+    "required": [
+        "books"
+    ],
+    "properties": {
+        "books": {
+            "$id": "#/properties/books",
+            "type": "array",
+            "title": "The books schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "examples": [
+                [
+                    {
+                        "isbn": "9781449325862"
+                    }
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/books/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/books/items/anyOf/0",
+                        "type": "object",
+                        "title": "The first anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": {},
+                        "examples": [
+                            {
+                                "isbn": "9781449325862"
+                            }
+                        ],
+                        "required": [
+                            "isbn"
+                        ],
+                        "properties": {
+                            "isbn": {
+                                "$id": "#/properties/books/items/anyOf/0/properties/isbn",
+                                "type": "string",
+                                "title": "The isbn schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "9781449325862"
+                                ]
+                            }
+                        },
+                        "additionalProperties": true
+                    }
+                ]
+            }
+        }
+    },
+    "additionalProperties": true
+}
